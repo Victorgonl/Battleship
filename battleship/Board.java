@@ -15,7 +15,7 @@ class Board {
 		}
 	}
 
-	public void printBoard() {
+	public void printBoard(boolean show_boats) {
 		System.out.println("  1 2 3 4 5 6 7 8 9 10");
 		char row = 'A';
 		for (int i = 0; i < N_ROWS; i ++) {
@@ -26,7 +26,12 @@ class Board {
 				} else if(this.board[i][j] == 2) {
 					System.out.print(" M");
 				} else if(this.board[i][j] == 3) {
-					System.out.print(" O");
+					if (show_boats){
+						System.out.print(" O");
+					} else {
+						System.out.print(" ~");
+					}
+					
 				} else if(this.board[i][j] == 4) {
 					System.out.print(" X");
 				} 
@@ -34,6 +39,7 @@ class Board {
 			System.out.println("");
 		}
 	}
+
 
 	private boolean validPosition(Boat boat) {
 		if (boat.p.x < 0 || boat.p.x >= N_ROWS) {

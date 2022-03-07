@@ -30,7 +30,7 @@ public class Main {
 		Boat[] boats = new Boat[5];
 
 		Board board = new Board();
-		board.printBoard();
+		board.printBoard(true);
 
 		int i = 0;
 		while(i < 5) {
@@ -41,7 +41,7 @@ public class Main {
 					boats[i] = new Boat(p, q, i);
 					board.insertBoat(boats[i]);
 					System.out.println();
-					board.printBoard();
+					board.printBoard(true);
 					i++;
 					break;
 				} catch (Exception exception) {
@@ -51,17 +51,20 @@ public class Main {
 		}
 
 		System.out.println("\nThe game starts!\n");
-		board.printBoard();
+		board.printBoard(false);
 		System.out.println("\nTake a shot!\n");
 
 		while(true) {
 			try {
 				readCoordenate();
+				
 				if(board.hitBoat(r)) {
-					board.printBoard();
+					System.out.println();
+					board.printBoard(false);
 					System.out.println("\nYou hit a ship!\n");
 				} else {
-					board.printBoard();
+					System.out.println();
+					board.printBoard(false);
 					System.out.println("\nYou missed!\n");
 				}
 				break;
@@ -69,6 +72,8 @@ public class Main {
 				System.out.println("\n" + exception.getMessage() + "\n");
 			}
 		}
+
+		board.printBoard(true);
 
 		input.close();
 
